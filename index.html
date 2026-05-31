@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>KM Infotech Solutions | Full-Stack Enterprise Software Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-deep: #020617;
+            --bg-panel: #0b1329;
+            --bg-panel-muted: #111c44;
+            --primary: #3b82f6;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --accent-green: #10b981;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-glow: rgba(14, 165, 233, 0.15);
+            --card-transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg-deep) 65%);
+            color: var(--text-primary);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        /* Top Navigation Hub */
+        .header-nav {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-glow);
+        }
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-logo {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+        .brand-title-group h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+            background: linear-gradient(to right, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .brand-title-group p {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--secondary);
+            letter-spacing: 1.5px;
+            margin-top: 2px;
+        }
+        .nav-links-group {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav-link-item {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--card-transition);
+        }
+        .nav-link-item:hover {
+            color: var(--secondary);
+        }
+        .btn-action-primary {
+            background: linear-gradient(135deg, #2563eb 0%, var(--primary) 100%);
+            color: #ffffff;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transition: var(--card-transition);
+        }
+        .btn-action-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+        .btn-action-outline {
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            background: transparent;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--card-transition);
+        }
+        .btn-action-outline:hover {
+            border-color: var(--secondary);
+            background: rgba(14, 165, 233, 0.05);
+        }
+        /* Hero Blueprint Section */
+        .hero-viewport {
+            padding: 80px 0 60px;
+        }
+        .hero-split-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 48px;
+        }
+        .hero-headline h2 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+        .gradient-glow-text {
+            background: linear-gradient(to right, #ffffff, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-taglines {
+            font-size: 1.1rem;
+            margin: 24px 0;
+            color: var(--secondary);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .hero-summary-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 560px;
+            margin-bottom: 36px;
+        }
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+        .metrics-badge-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .metric-badge-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px 20px;
+            border-radius: 16px;
+            min-width: 115px;
+        }
+        .metric-badge-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .metric-badge-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+        .hero-interactive-graphic {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .hero-centerpiece-banner {
+            width: 100%;
+            max-width: 460px;
+            height: auto;
+            animation: floatingEngine 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.2));
+        }
+        @keyframes floatingEngine {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        /* Dashboard Control Centers */
+        .section-separator {
+            padding: 80px 0;
+        }
+        .section-header-center {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 52px;
+        }
+        .section-main-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .section-subtitle-description {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+        .accent-orange-text {
+            color: var(--accent);
+        }
+        .control-panels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+        }
+        .control-panel-card {
+            background: var(--bg-panel);
+            border-radius: 24px;
+            border: 1px solid var(--border-glow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--card-transition);
+        }
+        .control-panel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 36px rgba(14, 165, 233, 0.12);
+            border-color: rgba(14, 165, 233, 0.3);
+        }
+        .panel-meta-header {
+            padding: 24px 24px 16px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .panel-meta-header i {
+            color: var(--secondary);
+        }
+        .panel-screenshot-frame {
+            padding: 16px 24px 0;
+            background: rgba(0, 0, 0, 0.15);
+        }
+        .panel-screenshot {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            border-radius: 12px 12px 0 0;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: none;
+            transition: var(--card-transition);
+        }
+        .control-panel-card:hover .panel-screenshot {
+            object-position: center;
+        }
+        .panel-info-footer {
+            padding: 24px;
+            background: var(--bg-panel);
+            flex-grow: 1;
+        }
+        .panel-metrics-summary {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .panel-metrics-summary span {
+            color: var(--accent-green);
+        }
+        .panel-narrative {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .tech-tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+        .tech-tag {
+            background: var(--bg-panel-muted);
+            color: var(--secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(14, 165, 233, 0.1);
+        }
+        /* Modular Grid Systems */
+        .solutions-matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+        }
+        .matrix-node-card {
+            background: rgba(11, 19, 41, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 28px;
+            display: flex;
+            gap: 20px;
+            transition: var(--card-transition);
+        }
+        .matrix-node-card:hover {
+            background: var(--bg-panel);
+            border-color: var(--border-glow);
+            transform: scale(1.02);
+        }
+        .matrix-icon-wrapper {
+            background: rgba(14, 165, 233, 0.08);
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+        .matrix-content-block h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        .matrix-content-block p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        /* Technology & Industrial Ecosystem */
+        .ecosystem-dual-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        .ecosystem-card-panel {
+            background: rgba(11, 19, 41, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .ecosystem-card-panel h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            position: relative;
+            padding-left: 14px;
+        }
+        .ecosystem-card-panel h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 4px;
+            height: 18px;
+            background: var(--secondary);
+            border-radius: 4px;
+        }
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .skills-group-title {
+            width: 100%;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin: 14px 0 6px;
+        }
+        .skills-group-title:first-child { margin-top: 0; }
+        .skill-bubble {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        .asset-graphic-showcase {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+            margin-top: 16px;
+        }
+        /* Awards Showcase Banner */
+        .recognition-banner-strip {
+            background: linear-gradient(90deg, rgba(11, 19, 41, 0.7) 0%, rgba(17, 28, 68, 0.4) 100%);
+            border: 1px solid var(--border-glow);
+            border-radius: 24px;
+            padding: 36px;
+            display: grid;
+            grid-template-columns: 0.4fr 0.6fr;
+            align-items: center;
+            gap: 32px;
+        }
+        .recognition-label-zone h4 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+        .recognition-label-zone p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+        .awards-asset-wrapper {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .awards-png-render {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        /* Footer Contact Overlay Block */
+        .cta-closure-block {
+            background: linear-gradient(145deg, #070f24 0%, #020617 100%);
+            border: 1px solid var(--border-glow);
+            border-radius: 32px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-closure-block h2 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 14px;
+            background: linear-gradient(to right, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cta-closure-block p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 620px;
+            margin: 0 auto 36px;
+            line-height: 1.6;
+        }
+        .contact-channels-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .contact-channels-row span, .contact-channels-row a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #e2e8f0;
+            text-decoration: none;
+        }
+        .contact-channels-row a:hover {
+            color: var(--secondary);
+        }
+        .contact-channels-row i {
+            color: var(--secondary);
+        }
+        .horizontal-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            margin-bottom: 36px;
+        }
+        .modular-metrics-strip {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .modular-metrics-strip span strong {
+            color: #ffffff;
+            font-size: 0.95rem;
+        }
+        /* Core Footer Elements */
+        .site-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 0 40px;
+            position: relative;
+        }
+        .footer-bg-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .footer-bg-skyline {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: bottom;
+        }
+        .footer-content-hub {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .footer-content-hub p {
+            margin-bottom: 12px;
+        }
+        .location-marker-tag {
+            color: var(--secondary);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        /* Adaptability Breakpoints */
+        @media (max-width: 1024px) {
+            .hero-split-layout { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .hero-summary-text { margin: 0 auto 36px; }
+            .hero-cta-group { justify-content: center; }
+            .metrics-badge-container { justify-content: center; }
+            .ecosystem-dual-panel { grid-template-columns: 1fr; }
+            .recognition-banner-strip { grid-template-columns: 1fr; text-align: center; }
+            .awards-asset-wrapper { justify-content: center; }
+        }
+        @media (max-width: 768px) {
+            .nav-links-group { display: none; }
+            .hero-headline h2 { font-size: 2.4rem; }
+            .control-panels-grid { grid-template-columns: 1fr; }
+            .contact-channels-row { flex-direction: column; gap: 20px; align-items: center; }
+            .modular-metrics-strip { gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-nav">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="brand-block">
+                    <img src="assets/logo.png" alt="KM Infotech Solutions Logo" class="brand-logo" onerror="this.style.display='none';">
+                    <div class="brand-title-group">
+                        <h1>KM INFOTECH SOLUTIONS</h1>
+                        <p>ENTERPRISE SOFTWARE SOLUTIONS</p>
+                    </div>
+                </div>
+                <nav class="nav-links-group">
+                    <a href="#control-centers" class="nav-link-item">Core Applications</a>
+                    <a href="#innovations" class="nav-link-item">Compliance & Features</a>
+                    <a href="#ecosystem" class="nav-link-item">Our Stack</a>
+                    <a href="#contact" class="btn-action-primary">Request Solution Architecture</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="container hero-viewport">
+            <div class="hero-split-layout">
+                <div class="hero-headline">
+                    <h2>Engineering Intelligent <br><span class="gradient-glow-text">Enterprise Software</span></h2>
+                    <p class="hero-taglines">Full-Stack Development • Mobile Solutions • Custom Operations Architecture</p>
+                    <p class="hero-summary-text">We design, build, and deploy complete, production-ready software solutions. From cross-platform mobile environments to unified enterprise ERP portals, we transform operational challenges into high-performance digital systems.</p>
+                    
+                    <div class="hero-cta-group">
+                        <a href="#control-centers" class="btn-action-primary">Explore Solutions Portfolio →</a>
+                        <a href="#contact" class="btn-action-outline">Schedule System Consultation</a>
+                    </div>
+                    
+                    <div class="metrics-badge-container">
+                        <div class="metric-badge-box"><div class="metric-badge-value">5.5</div><div class="metric-badge-label">Years System Experience</div></div>
+                        <div class="metric-badge-box"><div class="metric-badge-value">28+</div><div class="metric-badge-label">Enterprise Builds Delivered</div></div>
+                        <div class="metric-badge-box"><div class="metric-badge-value">100%</div><div class="metric-badge-label">On-Time Milestones (3 Yrs)</div></div>
+                        <div class="metric-badge-box"><div class="metric-badge-value">3x</div><div class="metric-badge-label">Industry Awards Won</div></div>
+                    </div>
+                </div>
+                <div class="hero-interactive-graphic">
+                    <img src="assets/banner.png" alt="Ecosystem Configuration Core" class="hero-centerpiece-banner" onerror="this.src='https://placehold.co/460x460/0b1329/ffffff?text=KM+Core+Engine';">
+                </div>
+            </div>
+        </section>
+
+        <section class="container section-separator" id="control-centers">
+            <div class="section-header-center">
+                <h2 class="section-main-title">Full-Stack Enterprise <span class="accent-orange-text">Software Applications</span></h2>
+                <p class="section-subtitle-description">Custom-built digital platforms engineered to orchestrate data, automate workflows, and scale mission-critical processes.</p>
+            </div>
+            
+            <div class="control-panels-grid">
+                <div class="control-panel-card">
+                    <div class="panel-meta-header">Multi-Industry ERP Platform <i class="fas fa-cubes"></i></div>
+                    <div class="panel-screenshot-frame">
+                        <img src="assets/ERP.png" alt="ERP Compliance UI" class="panel-screenshot" onerror="this.src='https://placehold.co/600x350/111c44/ffffff?text=ERP+System';">
+                    </div>
+                    <div class="panel-info-footer">
+                        <div class="panel-metrics-summary">Integrated Compliance <span>E-Invoice & E-Way Bill Ready</span></div>
+                        <p class="panel-narrative">A comprehensive ERP ecosystem tailored for trading, transport, and chemical industries. It streamlines inventory control, tracks financial distributions, and features real-time operation updates via automated WhatsApp integration.</p>
+                        <div class="tech-tags-container">
+                            <span class="tech-tag">.NET Framework</span><span class="tech-tag">SQL Server</span><span class="tech-tag">WhatsApp API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-panel-card">
+                    <div class="panel-meta-header">Unified HRMS Data Hub <i class="fas fa-users-gear"></i></div>
+                    <div class="panel-screenshot-frame">
+                        <img src="assets/hrms.png" alt="HRMS Integration Screen" class="panel-screenshot" onerror="this.src='https://placehold.co/600x350/111c44/ffffff?text=HRMS+Platform';">
+                    </div>
+                    <div class="panel-info-footer">
+                        <div class="panel-metrics-summary">Process Optimization <span>100% In-House Code</span></div>
+                        <p class="panel-narrative">An enterprise data integration hub that extracts live logs from attendance terminals, processing them directly into primary business networks. Powers real-time analytical management dashboards for headcount verification, ERT routing, and canteen services.</p>
+                        <div class="tech-tags-container">
+                            <span class="tech-tag">Python</span><span class="tech-tag">Data Integration</span><span class="tech-tag">SQL Server</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-panel-card">
+                    <div class="panel-meta-header">Hospital Administration Suite <i class="fas fa-heartbeat"></i></div>
+                    <div class="panel-screenshot-frame">
+                        <img src="assets/hms.png" alt="HMS Dashboard Screen" class="panel-screenshot" onerror="this.src='https://placehold.co/600x350/111c44/ffffff?text=Hospital+System';">
+                    </div>
+                    <div class="panel-info-footer">
+                        <div class="panel-metrics-summary">Digital Workflows <span>Fully Paperless Execution</span></div>
+                        <p class="panel-narrative">An end-to-end management engine built for medical complexes. Handles the complete patient journey from outpatient scheduling and indoor billing matrices to automated laboratory diagnostics reporting and discharge summaries.</p>
+                        <div class="tech-tags-container">
+                            <span class="tech-tag">.NET Suite</span><span class="tech-tag">SQL Server</span><span class="tech-tag">SSRS Reports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-panel-card">
+                    <div class="panel-meta-header">AI Business Card Scanner <i class="fas fa-id-card-clip"></i></div>
+                    <div class="panel-screenshot-frame">
+                        <img src="assets/buisnesscardscanner.png" alt="Mobile App UI Frame" class="panel-screenshot" onerror="this.src='https://placehold.co/600x350/111c44/ffffff?text=AI+Scanner';">
+                    </div>
+                    <div class="panel-info-footer">
+                        <div class="panel-metrics-summary">Lead Acceleration <span>10x Faster Capture</span></div>
+                        <p class="panel-narrative">A cross-platform mobile application driven by Azure Document Intelligence. Deployed at major commercial venues, it intelligently extracts contact information from business cards and feeds verified lead data immediately into sales CRM pipelines.</p>
+                        <div class="tech-tags-container">
+                            <span class="tech-tag">Flutter Mobile</span><span class="tech-tag">Azure Doc AI</span><span class="tech-tag">Dart</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-panel-card">
+                    <div class="panel-meta-header">Production Telemetry Dashboard <i class="fas fa-chart-line"></i></div>
+                    <div class="panel-screenshot-frame">
+                        <img src="assets/iot.png" alt="Telemetry Stream UI" class="panel-screenshot" onerror="this.src='https://placehold.co/600x350/111c44/ffffff?text=IoT+Telemetry';">
+                    </div>
+                    <div class="panel-info-footer">
+                        <div class="panel-metrics-summary">Floor Visibility <span>Real-Time Stream Processing</span></div>
+                        <p class="panel-narrative">An advanced operational layout that displays live equipment processing feeds. Gives administrative teams floor-level visibility into machine utilization rates, tracking line efficiency parameters with instant structural feedback loops.</p>
+                        <div class="tech-tags-container">
+                            <span class="tech-tag">.NET Core</span><span class="tech-tag">Data Visualizations</span><span class="tech-tag">CII Award Winner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-panel-card">
+                    <div class="panel-meta-header">Document Management Vault <i class="fas fa-folder-tree"></i></div>
+                    <div class="panel-screenshot-frame">
+                        <img src="assets/dms.png" alt="DMS Dashboard Screen" class="panel-screenshot" onerror="this.src='https://placehold.co/600x350/111c44/ffffff?text=Document+Vault';">
+                    </div>
+                    <div class="panel-info-footer">
+                        <div class="panel-metrics-summary">Enterprise Scale <span>Centralized Archival Platform</span></div>
+                        <p class="panel-narrative">Engineered for major enterprise clients (GNFC), this secure system handles centralized engineering drawing collections, physical layout-to-scheme linkages, precise categorization filters, and auditing modules.</p>
+                        <div class="tech-tags-container">
+                            <span class="tech-tag">.NET Architecture</span><span class="tech-tag">jQuery Suite</span><span class="tech-tag">SQL Database</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container section-separator" id="innovations">
+            <div class="section-header-center">
+                <h2 class="section-main-title">Full-Cycle Features & <span class="accent-orange-text">Compliance Models</span></h2>
+                <p class="section-subtitle-description">From backend database optimization and rigorous cyber security to audited industrial compliance validations.</p>
+            </div>
+            
+            <div class="solutions-matrix-grid">
+                <div class="matrix-node-card">
+                    <div class="matrix-icon-wrapper"><i class="fas fa-shield-halved fa-lg"></i></div>
+                    <div class="matrix-content-block">
+                        <h3>Advanced Security Hardening</h3>
+                        <p>Protects system vulnerabilities by implementing robust Role-Based Access Control (RBAC), multi-tier session parameters, and centralized global input validation modules built to systematically neutralize SQL Injection and Cross-Site Scripting (XSS).</p>
+                    </div>
+                </div>
+                <div class="matrix-node-card">
+                    <div class="matrix-icon-wrapper"><i class="fas fa-link fa-lg"></i></div>
+                    <div class="matrix-content-block">
+                        <h3>Full SAP API Systems Integration</h3>
+                        <p>A completely automated operations layer connecting custom applications directly to live SAP API masters. It automatically processes packing document slips, compliance labeling metrics, and certificates with absolute auditable validation logs.</p>
+                    </div>
+                </div>
+                <div class="matrix-node-card">
+                    <div class="matrix-icon-wrapper"><i class="fas fa-square-poll-horizontal fa-lg"></i></div>
+                    <div class="matrix-content-block">
+                        <h3>ISO-Compliant Digital Checklists</h3>
+                        <p>Replaces fragile paper forms on production lines with systematic software verification layouts. Automatically structures auditable Batch Manufacturing Record (BMR) checklists that enforce compliance at every point of the run.</p>
+                    </div>
+                </div>
+                <div class="matrix-node-card">
+                    <div class="matrix-icon-wrapper"><i class="fas fa-vial-circle-check fa-lg"></i></div>
+                    <div class="matrix-content-block">
+                        <h3>NABL Calibration & Verification Engines</h3>
+                        <p>A digital calibration verification solution built to replace legacy weight metrics with high-precision volumetric mathematical models. Cleared existing ISO audit non-conformances and cut out dependency on external vendor services.</p>
+                    </div>
+                </div>
+                <div class="matrix-node-card">
+                    <div class="matrix-icon-wrapper"><i class="fas fa-terminal fa-lg"></i></div>
+                    <div class="matrix-content-block">
+                        <h3>Scheduled Automation Suite</h3>
+                        <p>Background services managing data extractions, generating structured multi-department production metrics, and running real-time notification feeds to keep administrative pipelines completely coordinated without manual effort.</p>
+                    </div>
+                </div>
+                <div class="matrix-node-card">
+                    <div class="matrix-icon-wrapper"><i class="fas fa-list-check fa-lg"></i></div>
+                    <div class="matrix-content-block">
+                        <h3>12 Concurrent Enterprise Projects</h3>
+                        <p>A proven track record of managing full software development life cycles (SDLC) for up to 12 corporate builds simultaneously, resulting in a perfect three-year history of 100% on-time product releases without missing a single delivery deadline.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container section-separator" id="ecosystem">
+            <div class="section-header-center">
+                <h2 class="section-main-title">Full-Stack Framework & <span class="accent-orange-text">Industry Expertise</span></h2>
+                <p class="section-subtitle-description">The programming environments, engineering tools, and commercial verticals that define our software services.</p>
+            </div>
+            
+            <div class="ecosystem-dual-panel">
+                <div class="ecosystem-card-panel">
+                    <div>
+                        <h3>Technologies We Deploy</h3>
+                        <div class="skills-cloud">
+                            <div class="skills-group-title">Backend Architecture & Logic</div>
+                            <span class="skill-bubble">.NET</span><span class="skill-bubble">ASP.NET</span><span class="skill-bubble">SAP API Services</span><span class="skill-bubble">SSRS Reporting</span><span class="skill-bubble">Python Engine</span>
+                            
+                            <div class="skills-group-title">Frontend & Mobile Development</div>
+                            <span class="skill-bubble">Flutter</span><span class="skill-bubble">JavaScript</span><span class="skill-bubble">jQuery</span><span class="skill-bubble">AJAX Interactivity</span><span class="skill-bubble">HTML5 / CSS3</span>
+                            
+                            <div class="skills-group-title">Data Storage & Security Integrations</div>
+                            <span class="skill-bubble">SQL Server</span><span class="skill-bubble">Oracle Database</span><span class="skill-bubble">Azure Document AI</span><span class="skill-bubble">Hardware Integration & OPC</span><span class="skill-bubble">RBAC Security</span>
+                        </div>
+                    </div>
+                    <img src="assets/technology.png" alt="Core Technologies Grid Chart" class="asset-graphic-showcase" onerror="this.style.display='none';">
+                </div>
+
+                <div class="ecosystem-card-panel">
+                    <div>
+                        <h3>Industries We Support</h3>
+                        <div class="skills-cloud" style="margin-bottom: 0;">
+                            <span class="skill-bubble"><i class="fas fa-industry"></i> Manufacturing & Plants</span>
+                            <span class="skill-bubble"><i class="fas fa-compass-drafting"></i> Civil Engineering & Infrastructure</span>
+                            <span class="skill-bubble"><i class="fas fa-notes-medical"></i> Healthcare Networks</span>
+                            <span class="skill-bubble"><i class="fas fa-flask-vial"></i> Chemical Sectors</span>
+                            <span class="skill-bubble"><i class="fas fa-truck-ramp-box"></i> Logistics & Fleet Management</span>
+                            <span class="skill-bubble"><i class="fas fa-shop"></i> Trading & Commerce</span>
+                            <span class="skill-bubble"><i class="fas fa-rectangle-ad"></i> Sales Platforms & CRMs</span>
+                            <span class="skill-bubble"><i class="fas fa-building-shield"></i> Government & PSUs</span>
+                        </div>
+                    </div>
+                    <img src="assets/industries.png" alt="Industries Served Grid Chart" class="asset-graphic-showcase" onerror="this.style.display='none';">
+                </div>
+            </div>
+
+            <div class="recognition-banner-strip">
+                <div class="recognition-label-zone">
+                    <h4>National & State Level <br><span class="accent-orange-text">Engineering Awards</span></h4>
+                    <p>Recognized across elite industry groups and conventions for outstanding architectural innovation and enterprise digitalization solutions.</p>
+                </div>
+                <div class="awards-asset-wrapper">
+                    <img src="assets/awards.png" alt="Awards Recognition Board Log" class="awards-png-render" onerror="this.src='https://placehold.co/500x150/111c44/ffffff?text=Awards+Milestones';">
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="contact">
+            <div class="cta-closure-block">
+                <h2>Let's Build Something Tailored to Your Business Requirements!</h2>
+                <p>Partner with an expert who understands full-stack execution. Bring us your complex data structures, operational hurdles, or legacy applications, and we will build a high-performance, completely secure solution tailored specifically to your needs.</p>
+                
+                <div class="contact-channels-row">
+                    <span><i class="fas fa-phone-alt"></i> +91 88490 69225</span>
+                    <a href="mailto:sachin070299@gmail.com"><i class="fas fa-envelope"></i> sachin070299@gmail.com</a>
+                </div>
+
+                <div style="margin-bottom: 40px;">
+                    <a href="mailto:sachin070299@gmail.com" class="btn-action-primary">Initiate Solution Architecture Request →</a>
+                </div>
+
+                <div class="horizontal-divider"></div>
+
+                <div class="modular-metrics-strip">
+                    <span><strong>28+</strong> Projects Deployed</span>
+                    <span><strong>8+</strong> Industrial Sectors Managed</span>
+                    <span><strong>100%</strong> Milestone Compliance</span>
+                    <span><strong>5.5</strong> Production-Ready Years</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-bg-wrapper">
+            <img src="assets/city.png" alt="Ambient Grid City Landscape" class="footer-bg-skyline" onerror="this.style.display='none';">
+        </div>
+        <div class="container footer-content-hub">
+            <p>© 2026 KM INFOTECH SOLUTIONS — Engineering Intelligent Digital Ecosystems.</p>
+            <p class="location-marker-tag"><i class="fas fa-map-marker-alt"></i> Bharuch, Gujarat, India</p>
+        </div>
+    </footer>
+
+</body>
+</html>
