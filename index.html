@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KM Infotech Solutions — Enterprise Software</title>
+<meta name="description" content="Custom ERP, HRMS, QMS, DMS, visitor management and dashboards for manufacturers in India and worldwide.">
+<link rel="icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#020617;--panel:#0B1329;--panel2:#111C44;--line:rgba(56,189,248,.16);--text:#F8FAFC;--mute:#94A3B8;--blue:#3B82F6;--sky:#0EA5E9;--or:#F97316;--amber:#F59E0B}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--bg);background-image:radial-gradient(1000px 520px at 10% -5%,rgba(59,130,246,.20),transparent 60%),radial-gradient(800px 480px at 95% 5%,rgba(249,115,22,.10),transparent 60%),linear-gradient(rgba(59,130,246,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.035) 1px,transparent 1px);background-size:auto,auto,44px 44px,44px 44px;line-height:1.55}
+a{color:#7DD3FC}a:hover{color:#BAE6FD}
+img{max-width:100%;display:block}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+.grad{background:linear-gradient(90deg,#F97316,#F59E0B 45%,#38BDF8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#38BDF8}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 22px;border-radius:999px;font-weight:700;text-decoration:none;border:1px solid rgba(148,163,184,.35);color:#F1F5F9;background:rgba(11,19,41,.6);transition:all .25s;font-size:15px;cursor:pointer}
+.btn:hover{border-color:#38BDF8;color:#fff;box-shadow:0 0 0 4px rgba(56,189,248,.12)}
+.btn.or{background:linear-gradient(135deg,#F97316,#F59E0B);border-color:transparent;color:#1A0B00;box-shadow:0 10px 30px -10px rgba(249,115,22,.8)}
+.btn.bl{background:linear-gradient(135deg,#2563EB,#0EA5E9);border-color:transparent;color:#fff;box-shadow:0 10px 30px -10px rgba(37,99,235,.9)}
+.btn.or:hover,.btn.bl:hover{filter:brightness(1.08)}
+.card{background:linear-gradient(180deg,rgba(17,28,68,.62),rgba(11,19,41,.9));border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 70px -45px rgba(59,130,246,.7)}
+header{position:sticky;top:0;z-index:30;background:rgba(2,6,23,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:18px;min-height:70px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+.brand img{height:46px;width:auto}
+.brand b{font-weight:800;font-size:16px;letter-spacing:.02em;display:block;line-height:1.1}
+.brand small{display:flex;align-items:center;gap:6px;font-size:9px;letter-spacing:.3em;color:#38BDF8;font-weight:700;margin-top:3px}
+.brand small::before,.brand small::after{content:"";width:14px;height:1px;background:var(--or)}
+nav.links{display:flex;gap:4px;flex-wrap:wrap;flex:1;justify-content:center}
+nav.links a{color:#CBD5E1;text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:8px}
+nav.links a:hover{color:#fff;background:rgba(148,163,184,.08)}
+nav.links a.on{color:#fff;box-shadow:inset 0 -2px 0 var(--or)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr 1.05fr;gap:24px;align-items:center;padding-top:56px;padding-bottom:40px}
+.hero h1{font-size:42px;line-height:1.06;margin:14px 0 14px;font-weight:800;letter-spacing:-.025em}
+.hero .sub{font-weight:600;color:#E2E8F0;margin:0 0 10px}
+.hero p{color:#CBD5E1;margin:0 0 24px;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 22px;margin-top:28px;max-width:420px}
+.stat{display:flex;gap:10px;align-items:center}
+.stat svg{flex:0 0 auto}
+.stat b{font-size:22px;font-weight:800;display:block;line-height:1}
+.stat span{font-size:12px;color:var(--mute)}
+.orbit{position:relative;aspect-ratio:1;max-width:420px;margin:0 auto;width:100%;container-type:inline-size}
+.orbit .ring{position:absolute;inset:6%;border-radius:50%;border:1px dashed rgba(56,189,248,.28);box-shadow:inset 0 0 60px rgba(59,130,246,.15)}
+.orbit .ring2{position:absolute;inset:20%;border-radius:50%;border:1px solid rgba(249,115,22,.18)}
+.orbit .logo{position:absolute;inset:22%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center}
+.orbit .logo img{width:100%;filter:drop-shadow(0 18px 40px rgba(59,130,246,.45))}
+.orbit .logo b{font-size:15px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+.spin{position:absolute;inset:0;animation:spin 60s linear infinite}
+.badge{position:absolute;left:50%;top:50%;width:15cqw;height:15cqw;margin:-7.5cqw 0 0 -7.5cqw;border-radius:50%;background:radial-gradient(circle at 30% 30%,#1E3A8A,#0B1329);border:1px solid rgba(56,189,248,.45);box-shadow:0 0 24px rgba(14,165,233,.35);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12px;color:#E0F2FE}
+.badge span{animation:spin 60s linear infinite reverse;display:block;text-align:center;line-height:1.1}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin,.badge span{animation:none}}
+.device{position:relative;padding-bottom:30px}
+.laptop{border-radius:14px;border:1px solid rgba(56,189,248,.35);background:#0B1329;padding:8px;box-shadow:0 30px 80px -30px rgba(59,130,246,.8)}
+.laptop img{border-radius:8px}
+.laptop::after{content:"";display:block;height:10px;margin:8px -24px -8px;border-radius:0 0 14px 14px;background:linear-gradient(#1E293B,#0F172A)}
+.phone{position:absolute;left:-22px;bottom:-6px;width:30%;filter:drop-shadow(0 20px 40px rgba(14,165,233,.5))}
+.phone img{width:100%;height:auto}
+.tagbox{position:absolute;right:-6px;bottom:4px;background:rgba(11,19,41,.95);border:1px solid rgba(56,189,248,.45);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;line-height:1.3}
+section{padding:56px 0}
+.h2{text-align:center;margin:0 0 8px;font-size:32px;font-weight:800;letter-spacing:-.02em}
+.h2 + p{text-align:center;color:var(--mute);margin:0 auto 30px;max-width:680px}
+.carousel{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(280px,1fr);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;scrollbar-width:thin}
+.prod{scroll-snap-align:start;display:flex;flex-direction:column;overflow:hidden;text-decoration:none;color:inherit;transition:transform .3s,border-color .3s}
+.prod:hover{transform:translateY(-4px);border-color:rgba(56,189,248,.5);color:inherit}
+.prod img{aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line)}
+.prod .b{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.prod h3{margin:0;font-size:17px;display:flex;align-items:center;gap:8px}
+.prod h3 i{width:26px;height:26px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-style:normal;background:linear-gradient(135deg,#2563EB,#0EA5E9)}
+.prod p{margin:0;font-size:14px;color:#CBD5E1}
+.prod .go{margin-top:auto;font-weight:700;font-size:14px;color:#FDBA74}
+.cnav{display:flex;justify-content:center;gap:10px;margin-top:6px}
+.cnav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:#fff;cursor:pointer;font-size:18px}
+.phones{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(168px,1fr);gap:18px;overflow-x:auto;padding:6px 2px 14px;scroll-snap-type:x mandatory}.phones figure{margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center}.phones img{width:100%;max-width:230px;filter:drop-shadow(0 20px 40px rgba(14,165,233,.35))}.phones figcaption{font-size:13px;color:#CBD5E1}.phones figcaption b{display:block;color:#fff;font-size:15px}.feats-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}.feats-row span{border:1px solid rgba(56,189,248,.3);background:rgba(14,165,233,.08);color:#E0F2FE;border-radius:999px;padding:6px 14px;font-size:13px}
+.band{display:grid;grid-template-columns:1fr 1fr 1fr 1.1fr;gap:16px}
+.band .card{padding:20px}
+.band h3{margin:0 0 14px;text-align:center;font-size:15px;color:#93C5FD;font-weight:700}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.tile{background:rgba(11,19,41,.9);border:1px solid var(--line);border-radius:10px;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#E2E8F0;display:flex;flex-direction:column;align-items:center;gap:6px}
+.tile svg{width:22px;height:22px;flex:0 0 auto}
+.tiles.ind{grid-template-columns:repeat(2,minmax(0,1fr))}.tiles.ind .tile{flex-direction:row;justify-content:flex-start;padding:10px;font-size:12px;text-align:left}
+.tile .mono{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:#7DD3FC}
+.award{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(148,163,184,.1)}
+.award:last-child{border:0}
+.award b{display:block;font-size:14px}
+.award span{font-size:12px;color:var(--mute)}
+.cta{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;overflow:hidden}
+.cta h3{color:#fff!important;font-size:19px!important;margin:0!important}
+.cta p{margin:0;color:#CBD5E1;font-size:14px}
+.cta .contact{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;font-size:13px;margin-top:6px}
+.strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;margin-top:16px}
+.strip div{display:flex;gap:10px;align-items:center;justify-content:center;padding:14px 8px;border-right:1px solid rgba(148,163,184,.12)}
+.strip div:last-child{border:0}
+.strip b{font-size:20px;font-weight:800;color:#93C5FD;display:block;line-height:1}
+.strip span{font-size:12px;color:var(--mute)}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.feat{padding:22px}
+.feat h3{margin:12px 0 6px;font-size:17px}
+.feat p{margin:0;color:#CBD5E1;font-size:14px}
+.ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);box-shadow:0 0 22px rgba(59,130,246,.25)}
+.ico.o{background:rgba(249,115,22,.12);border-color:rgba(249,115,22,.4);box-shadow:0 0 22px rgba(249,115,22,.25)}
+.step b.n{font-family:'JetBrains Mono',monospace;font-size:26px;background:linear-gradient(90deg,#F97316,#F59E0B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.price{padding:24px;display:flex;flex-direction:column;gap:10px}
+.price.hl{border-color:rgba(249,115,22,.6);box-shadow:0 30px 70px -40px rgba(249,115,22,.8)}
+.price .amt{font-size:24px;font-weight:800}
+form.f{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+form.f label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#CBD5E1}
+form.f .w{grid-column:1/-1}
+form.f input,form.f select,form.f textarea{min-height:46px;border-radius:10px;border:1px solid rgba(56,189,248,.25);background:#0B1329;color:#fff;padding:0 12px;font:inherit}
+form.f textarea{padding:10px 12px;min-height:100px}
+form.f input:focus,form.f select:focus,form.f textarea:focus{outline:none;border-color:#38BDF8;box-shadow:0 0 0 3px rgba(56,189,248,.18)}
+.sent{display:none;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.4);border-radius:12px;padding:14px;color:#A7F3D0}
+footer{border-top:1px solid var(--line);margin-top:30px;position:relative;overflow:hidden}
+.sky{position:absolute;left:0;right:0;bottom:0;height:140px;opacity:.55;pointer-events:none}
+.foot{position:relative;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:28px 0 36px;font-size:13px;color:var(--mute)}
+.mono{font-family:'JetBrains Mono',monospace}
+@media (max-width:1100px){.hero{grid-template-columns:1fr 1fr}.hero .device{grid-column:1/-1;max-width:640px;margin:0 auto}.band{grid-template-columns:1fr 1fr}.strip{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:1fr 1fr}}
+@media (max-width:720px){header .btn.bl{display:none}.brand small{display:none}.hero{grid-template-columns:1fr;padding-top:30px}.hero h1{font-size:34px}.band,.g3,.g4{grid-template-columns:1fr}.strip{grid-template-columns:1fr 1fr}form.f{grid-template-columns:1fr}nav.links{order:3;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;flex-basis:100%}nav.links a{white-space:nowrap}.h2{font-size:26px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="#top"><img src="assets/logo.png" alt="KM Infotech Solutions logo"><span><b><span style="color:#F97316">KM</span> INFOTECH SOLUTIONS</b><small>PROVIDING BUSINESS SOLUTIONS</small></span></a>
+  <nav class="links" aria-label="Main"><a href="#top" class="on">Home</a><a href="#solutions">Solutions</a><a href="portfolio.html">Live demos</a><a href="#mobile">Mobile apps</a><a href="#stack">Technologies</a><a href="#global">Global</a><a href="#contact">Contact</a></nav>
+  <a class="btn bl" href="#contact" style="min-height:40px;padding:0 18px;font-size:14px">Get in touch →</a>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <div class="eyebrow">Custom ERP · HRMS · Industrial software</div>
+    <h1>Enterprise software built around <span class="grad">how your plant actually runs.</span></h1>
+    <p class="sub">Enterprise Software · ERP · HRMS · Automation · Android &amp; iPhone apps</p>
+    <p>From the gate to the shop floor to payroll — ERP, HRMS, quality, document and visitor systems you configure module by module, instead of bending your process to fit someone else's software.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn or" href="portfolio.html">Try the live demos →</a><a class="btn" href="#contact" style="border-color:rgba(56,189,248,.5)">Book a consultation</a></div>
+    <div class="stats">
+      <div class="stat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><div><b>6</b><span>Ready-made products</span></div></div>
+      <div class="stat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="1.8" aria-hidden="true"><path d="M3 21V10l5 3V10l5 3V6h6v15H3z"/></svg><div><b>10</b><span>ERP modules</span></div></div>
+      <div class="stat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.8" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg><div><b>Android + iOS</b><span>App for every product</span></div></div>
+      <div class="stat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><div><b>3</b><span>Payroll countries</span></div></div>
+    </div>
+  </div>
+
+  <div class="orbit" aria-label="KM Infotech Solutions with the technologies we use">
+    <div class="ring"></div><div class="ring2"></div>
+    <div class="spin" aria-hidden="true">
+      <div class="badge" style="transform:rotate(0deg) translateY(-45cqw) rotate(0deg)"><span>.NET</span></div>
+      <div class="badge" style="transform:rotate(45deg) translateY(-45cqw) rotate(-45deg)"><span>Flutter</span></div>
+      <div class="badge" style="transform:rotate(90deg) translateY(-45cqw) rotate(-90deg)"><span>Python</span></div>
+      <div class="badge" style="transform:rotate(135deg) translateY(-45cqw) rotate(-135deg)"><span>AI / ML</span></div>
+      <div class="badge" style="transform:rotate(180deg) translateY(-45cqw) rotate(-180deg)"><span>IoT</span></div>
+      <div class="badge" style="transform:rotate(225deg) translateY(-45cqw) rotate(-225deg)"><span>SQL<br>Server</span></div>
+      <div class="badge" style="transform:rotate(270deg) translateY(-45cqw) rotate(-270deg)"><span>iOS</span></div>
+      <div class="badge" style="transform:rotate(315deg) translateY(-45cqw) rotate(-315deg)"><span>Android</span></div>
+    </div>
+    <div class="logo"><img src="assets/logo.png" alt=""><b><span style="color:#F97316">KM</span> INFOTECH SOLUTIONS</b><span class="eyebrow" style="font-size:9px;letter-spacing:.3em">Enterprise Software</span></div>
+  </div>
+
+  <div class="device">
+    <div class="laptop"><img src="assets/shot-bi.jpg" alt="KM executive dashboard showing output, attendance and inventory"></div>
+    <div class="phone"><img src="assets/phone-hrms.jpg" alt="KM HRMS app on iPhone"></div>
+    <div class="tagbox">Zero vendor lock-in<br><span style="color:#38BDF8">Full-cycle development</span></div>
+  </div>
+</div>
+
+<section id="solutions" style="padding-top:20px"><div class="wrap">
+  <h2 class="h2">Our <span class="grad">Solutions</span> &amp; Innovations</h2>
+  <p>Ready-made products you can switch on module by module — every one is live in the interactive portfolio.</p>
+  <div class="carousel" id="car">
+    <a class="card prod" href="portfolio.html#/erp"><img src="assets/card-erp.jpg" alt="KM ERP dashboard"><div class="b"><h3><i>⌗</i>KM ERP</h3><p>Material, supply chain, gate entry, stores, quality, MRP planning, production, maintenance, projects and CAPEX — one database, one login.</p><span style="font-size:12px;color:#7DD3FC;font-weight:600">📱 Android &amp; iPhone app included</span><span class="go">Open live demo →</span></div></a>
+    <a class="card prod" href="portfolio.html#/hrms/p/attboard"><img src="assets/card-hrms.jpg" alt="KM HRMS live attendance"><div class="b"><h3><i>◉</i>KM HRMS &amp; Biometric Hub</h3><p>Face and fingerprint punches flow into shifts, overtime, leave, payroll and contract-labour (CLRA) compliance automatically.</p><span style="font-size:12px;color:#7DD3FC;font-weight:600">📱 Android &amp; iPhone app included</span><span class="go">Open live demo →</span></div></a>
+    <a class="card prod" href="portfolio.html#/hrms/l/pay"><img src="assets/card-payroll.jpg" alt="KM payroll register"><div class="b"><h3><i>₹</i>Multi-country Payroll</h3><p>India, UAE and UK rules side by side — payslips, PF/ESI, WPS salary files and bank transfer files from the same attendance data.</p><span style="font-size:12px;color:#7DD3FC;font-weight:600">📱 Android &amp; iPhone app included</span><span class="go">Open live demo →</span></div></a>
+    <a class="card prod" href="portfolio.html#/qms"><img src="assets/card-qms.jpg" alt="KM QMS ISO readiness"><div class="b"><h3><i>✓</i>KM QMS for ISO</h3><p>NCR, CAPA with 5-Why and 6M, internal audits with ISO 9001 / 14001 / 45001 checklists, calibration, risk and management review.</p><span style="font-size:12px;color:#7DD3FC;font-weight:600">📱 Android &amp; iPhone app included</span><span class="go">Open live demo →</span></div></a>
+    <a class="card prod" href="portfolio.html#/dms"><img src="assets/card-dms.jpg" alt="KM DMS controlled document"><div class="b"><h3><i>▤</i>Document Management</h3><p>Controlled documents with numbering, review and approval, revisions, read acknowledgement and the ISO master list.</p><span style="font-size:12px;color:#7DD3FC;font-weight:600">📱 Android &amp; iPhone app included</span><span class="go">Open live demo →</span></div></a>
+    <a class="card prod" href="portfolio.html#/vms"><img src="assets/card-vms.jpg" alt="KM visitor security desk"><div class="b"><h3><i>⌂</i>Visitor Management</h3><p>Self check-in kiosk, host approval, QR badges, security desk and an emergency roll call that includes employees on site.</p><span style="font-size:12px;color:#7DD3FC;font-weight:600">📱 Android &amp; iPhone app included</span><span class="go">Open live demo →</span></div></a>
+    <a class="card prod" href="portfolio.html#/bi"><img src="assets/card-bi.jpg" alt="KM executive dashboard"><div class="b"><h3><i>▦</i>Dashboards &amp; IoT</h3><p>Live plant scorecards and machine data from your ERP, Excel and devices — on web and Flutter mobile apps.</p><span style="font-size:12px;color:#7DD3FC;font-weight:600">📱 Android &amp; iPhone app included</span><span class="go">Open live demo →</span></div></a>
+  </div>
+  <div class="cnav"><button type="button" aria-label="Previous" onclick="document.getElementById('car').scrollBy({left:-320,behavior:'smooth'})">‹</button><button type="button" aria-label="Next" onclick="document.getElementById('car').scrollBy({left:320,behavior:'smooth'})">›</button></div>
+</div></section>
+
+<section id="mobile" style="padding-top:20px"><div class="wrap">
+  <div class="eyebrow" style="text-align:center">Android · iPhone</div>
+  <h2 class="h2" style="margin-top:8px">Every system. <span class="grad">In your pocket.</span></h2>
+  <p>Each KM product comes with a mobile app built in Flutter — one codebase, native apps for the Play Store and the App Store, on the same live data as the web system.</p>
+  <div class="phones">
+    <figure><img src="assets/phone-hrms.jpg" alt="KM HRMS app on iPhone: punch in with face match"><figcaption><b>HRMS</b>Punch in with face + GPS, leave, payslips</figcaption></figure>
+    <figure><img src="assets/phone-erp.jpg" alt="KM ERP app on Android: approvals inbox"><figcaption><b>ERP</b>Approve PRs, POs and CAPEX on the go</figcaption></figure>
+    <figure><img src="assets/phone-qms.jpg" alt="KM QMS inspector app on Android"><figcaption><b>QMS</b>Inspect at the machine, raise NCRs with photos</figcaption></figure>
+    <figure><img src="assets/phone-vms.jpg" alt="KM Visitor host app on iPhone"><figcaption><b>Visitor</b>Hosts approve guests, send QR invites</figcaption></figure>
+    <figure><img src="assets/phone-dms.jpg" alt="KM DMS app on iPhone"><figcaption><b>DMS</b>Read &amp; acknowledge new SOP revisions</figcaption></figure>
+    <figure><img src="assets/phone-bi.jpg" alt="KM Dashboards app on Android"><figcaption><b>Dashboards</b>Plant scorecard anywhere</figcaption></figure>
+  </div>
+  <div class="feats-row"><span>Push notifications</span><span>Works offline on the shop floor</span><span>Face ID / fingerprint login</span><span>Your logo &amp; app name</span><span>Play Store &amp; App Store publishing</span></div>
+  <div style="text-align:center;margin-top:20px"><a class="btn or" href="portfolio.html#/mob">Try the mobile apps live →</a></div>
+</div></section>
+
+<section id="stack" style="padding-top:10px"><div class="wrap">
+  <div class="band">
+    <div class="card"><h3>Technologies we use</h3><div class="tiles">
+      <div class="tile"><span class="mono">.NET</span>.NET</div><div class="tile"><span class="mono">ASP</span>ASP.NET</div><div class="tile"><span class="mono">py</span>Python</div><div class="tile"><span class="mono">SQL</span>SQL Server</div>
+      <div class="tile"><span class="mono">dart</span>Flutter</div><div class="tile"><span class="mono">ORA</span>Oracle</div><div class="tile"><span class="mono">SAP</span>SAP API</div><div class="tile"><span class="mono">AZ</span>Azure AI</div>
+      <div class="tile"><span class="mono">JS</span>JavaScript</div><div class="tile"><span class="mono">RPT</span>SSRS</div><div class="tile"><span class="mono">OPC</span>OPC / IoT</div><div class="tile"><span class="mono">API</span>Hikvision</div></div></div>
+    <div class="card"><h3>Industries we serve</h3><div class="tiles ind">
+      <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.6" aria-hidden="true"><path d="M3 21V10l5 3V10l5 3V6h3l1-3h2l1 3v15H3z"/></svg>Manufacturing</div>
+      <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.6" aria-hidden="true"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6"/></svg>Infrastructure</div>
+      <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/><path d="M12 9v5M9.5 11.5h5"/></svg>Healthcare</div>
+      <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.6" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>Chemicals</div>
+      <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.6" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>Logistics</div>
+      <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M5 7h14M5 7l-2 6h4l-2-6M19 7l-2 6h4l-2-6M8 21h8"/></svg>Trading</div>
+      <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.6" aria-hidden="true"><path d="M4 10h16L12 4 4 10zM6 10v8M10 10v8M14 10v8M18 10v8M3 20h18"/></svg>Government</div>
+      <div class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.6" aria-hidden="true"><path d="M4 20h16M6 16l4-5 3 3 5-7"/><path d="M15 7h3v3"/></svg>Sales &amp; CRM</div></div></div>
+    <div class="card"><h3 style="color:#FDBA74">Our promise to you</h3><div class="award"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg><div><b>Free clickable prototype</b><span>See your own screens before you pay for development</span></div></div><div class="award"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg><div><b>Fixed-price milestones</b><span>Agreed scope and price — no surprise bills</span></div></div><div class="award"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg><div><b>You own the source code</b><span>No vendor lock-in, ever</span></div></div><div class="award"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg><div><b>NDA from day one</b><span>Your data and processes stay private</span></div></div></div>
+    <div class="card cta"><h3>Let's build something amazing together</h3><p>Tell us what your team still does on paper or in Excel. We'll show you a working prototype before any code is written.</p><a class="btn or" href="#contact">Start your project →</a>
+      <div class="contact"><span>☎ +91 88490 69225</span><span>✉ sachin070299@gmail.com</span></div></div>
+  </div>
+  <div class="card strip">
+    <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><div><b>6</b><span>Ready products</span></div></div>
+    <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="1.6" aria-hidden="true"><path d="M3 21V10l5 3V10l5 3V6h6v15H3z"/></svg><div><b>10</b><span>ERP modules</span></div></div>
+    <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.6" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg><div><b>2</b><span>Apps: Android &amp; iPhone</span></div></div>
+    <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><div><b>3</b><span>Payroll countries</span></div></div>
+    <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="1.6" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg><div><b>ISO</b><span>9001 · 14001 · 45001</span></div></div>
+    <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.6" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3"/><rect x="5" y="11" width="14" height="10" rx="2"/></svg><div><b>100%</b><span>Code ownership</span></div></div>
+  </div>
+</div></section>
+
+<section id="global"><div class="wrap">
+  <div class="eyebrow" style="text-align:center">For clients outside India</div>
+  <h2 class="h2" style="margin-top:8px">Offshore pricing. <span class="grad">Onshore communication.</span></h2>
+  <p>Working from Bharuch, Gujarat for manufacturers in the Gulf, UK, Europe and beyond.</p>
+  <div class="g3">
+    <div class="card feat"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Working-hour overlap</h3><p>Full-day overlap with the Gulf, your morning in the UK and Europe, and scheduled calls for the US and Australia.</p></div>
+    <div class="card feat"><div class="ico o"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FDBA74" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div><h3>Multi-country, multi-currency</h3><p>Currencies, tax fields, languages and payroll rules configured per country and per site.</p></div>
+    <div class="card feat"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.8" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9H7z"/></svg></div><h3>Your cloud, your region</h3><p>AWS or Azure in the region you choose, or your own servers. Your data stays yours.</p></div>
+    <div class="card feat"><div class="ico o"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FDBA74" stroke-width="1.8" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></div><h3>Contracts you recognise</h3><p>NDA before the first call, IP assigned to you, milestone billing in USD, EUR, GBP or AED, and a written support SLA.</p></div>
+    <div class="card feat"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.8" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><h3>Privacy-aware by design</h3><p>Role-based access, audit trails and retention settings that support GDPR-style obligations.</p></div>
+    <div class="card feat"><div class="ico o"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FDBA74" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div><h3>One accountable lead</h3><p>You work directly with the engineer who designs and builds your system.</p></div>
+  </div>
+</div></section>
+
+<section id="process" style="padding-top:20px"><div class="wrap">
+  <h2 class="h2">See it working <span class="grad">before we write the code</span></h2>
+  <p>A clear, four-step path from your paperwork to a live system.</p>
+  <div class="g4">
+    <div class="card feat step"><b class="n">01</b><h3>Discover</h3><p>We map your forms, approvals, Excel sheets and machines on a video call.</p></div>
+    <div class="card feat step"><b class="n">02</b><h3>Clickable prototype</h3><p>You click through your own screens and sign off before development starts.</p></div>
+    <div class="card feat step"><b class="n">03</b><h3>Build in sprints</h3><p>A working release every two weeks on a test server you can use.</p></div>
+    <div class="card feat step"><b class="n">04</b><h3>Go live &amp; support</h3><p>Data migration, training and a monthly support plan with a response-time SLA.</p></div>
+  </div>
+  <div class="g3" style="margin-top:16px">
+    <div class="card price"><b style="font-size:18px">Product + configuration</b><span style="color:#CBD5E1;font-size:14px">License a KM product, configured to your process.</span><span class="amt">[from $ / month]</span></div>
+    <div class="card price hl"><b style="font-size:18px">Fixed-scope project</b><span style="color:#CBD5E1;font-size:14px">A custom system with agreed scope, price and milestones.</span><span class="amt">[from $ / project]</span></div>
+    <div class="card price"><b style="font-size:18px">Dedicated developer</b><span style="color:#CBD5E1;font-size:14px">A full-stack engineer on your team, billed monthly.</span><span class="amt">[$ / month]</span></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="card" style="padding:32px;display:grid;grid-template-columns:1fr 1.2fr;gap:32px" id="cgrid">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="eyebrow">Contact</div>
+      <h2 style="margin:0;font-size:32px;font-weight:800;letter-spacing:-.02em">Tell us what your team still does <span class="grad">on paper.</span></h2>
+      <p style="margin:0;color:#CBD5E1">We reply within one working day with questions, a rough estimate and a time for a 30-minute call in your time zone.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:15px"><span>☎ +91 88490 69225 (call / WhatsApp)</span><span>✉ sachin070299@gmail.com</span><span>⌖ Bharuch, Gujarat, India</span></div>
+      <a class="btn" href="portfolio.html" style="align-self:flex-start">Explore the live demos first →</a>
+    </div>
+    <form class="f" id="cf">
+      <label>Your name<input name="n" required></label>
+      <label>Work email<input name="e" type="email" required></label>
+      <label>Company<input name="c"></label>
+      <label>Country<input name="k"></label>
+      <label class="w">I'm interested in<select name="i"><option>ERP</option><option>HRMS &amp; payroll</option><option>QMS / DMS (ISO)</option><option>Visitor management</option><option>Website, dashboard or mobile app</option><option>Something else</option></select></label>
+      <label class="w">What should it do?<textarea name="m"></textarea></label>
+      <div class="w" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button class="btn or" type="submit">Send enquiry →</button><span style="color:var(--mute);font-size:13px">Or email us directly at sachin070299@gmail.com</span></div>
+      <div class="sent w" id="sent" role="status">Thank you — we'll be in touch within one working day.</div>
+    </form>
+  </div>
+</div></section>
+</main>
+
+<footer>
+  <svg class="sky" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3B82F6" stop-opacity=".55"/><stop offset="1" stop-color="#020617" stop-opacity="0"/></linearGradient></defs><path fill="url(#sg)" d="M0 140V96h40V70h30v26h24V50h36v46h20V80h28v-30h18v30h22v16h40V40h30v56h22V72h36v24h30V30h16l8-16 8 16h16v66h28V60h40v36h22V84h30V44h36v52h30V70h24v26h40V56h28v40h36V24h20v72h30V66h40v30h26V50h30v46h40V80h22V36h36v60h28V72h30v24h36V58h34v38h30V44h22v52h40V70h26v26h36V40h30v56h28V84h40v12h30V60h36v36h24V48h30v48h20v44z"/></svg>
+  <div class="wrap foot"><span>© 2026 KM Infotech Solutions — Engineering intelligent digital ecosystems.</span><span class="mono">&lt; .NET · C# · SQL · Python · Flutter · APIs /&gt;</span><span>Bharuch, Gujarat, India</span></div>
+</footer>
+<script>
+document.getElementById('cf').addEventListener('submit', function (e) { e.preventDefault(); document.getElementById('sent').style.display = 'block'; this.querySelector('button').disabled = true; });
+var mq = window.matchMedia('(max-width:900px)'); function lay() { document.getElementById('cgrid').style.gridTemplateColumns = mq.matches ? '1fr' : '1fr 1.2fr'; } lay(); mq.addEventListener('change', lay);
+var links = document.querySelectorAll('nav.links a[href^="#"]'); window.addEventListener('scroll', function () { var y = window.scrollY + 120, cur = null; links.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s && s.offsetTop <= y) cur = a; }); links.forEach(function (a) { a.classList.toggle('on', a === cur); }); });
+</script>
+</body>
+</html>
